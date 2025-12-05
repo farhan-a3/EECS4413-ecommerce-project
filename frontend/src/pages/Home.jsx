@@ -1,5 +1,14 @@
+import { Navbar, Main, Product, Footer } from "../components";
+
 function Home() {
-  return <div>Home page placeholder</div>
+  return (
+    <>
+      <Navbar />
+      <Main />
+      <Product />
+      <Footer />
+    </>
+  )
 }
 
 export default Home
