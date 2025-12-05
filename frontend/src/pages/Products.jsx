@@ -1,5 +1,13 @@
-function Products() {
-  return <div>Products page placeholder</div>
+import { Footer, Navbar, Product } from "../components";
+
+const Products = () => {
+  return (
+    <>
+      <Navbar />
+      <Product />
+      <Footer />
+    </>
+  )
 }
 
-export default Products
+export default Products;
