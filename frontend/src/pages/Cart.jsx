@@ -88,8 +88,7 @@ const Cart = () => {
                                   onClick={() => {
                                     removeItem(item);
                                   }}
-                                >
-                                  <i className="fas fa-minus"></i>
+                                > -                                  <i className="fas fa-minus"> </i>
                                 </button>
 
                                 <p className="mx-5">{item.qty}</p>
@@ -99,7 +98,7 @@ const Cart = () => {
                                   onClick={() => {
                                     addItem(item);
                                   }}
-                                >
+                                > +
                                   <i className="fas fa-plus"></i>
                                 </button>
                               </div>
