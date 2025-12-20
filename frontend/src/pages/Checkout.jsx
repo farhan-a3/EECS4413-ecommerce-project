@@ -154,18 +154,7 @@ const Checkout = () => {
       if (!res.ok) throw new Error(data?.error || "Login failed");
 
       localStorage.setItem("user", JSON.stringify(data.user));
-
       window.dispatchEvent(new Event("authChanged"));
-      const guestCart = JSON.parse(localStorage.getItem("cart_guest") || "[]");
-      if (guestCart.length) {
-        await fetch(`/api/users/${data.user.id}/cart/merge`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: guestCart }),
-        });
-        localStorage.removeItem("cart_guest");
-      }
-
       setAuthUser(data.user);
       toast.success("Logged in. Keep going.");
     } catch (err) {
@@ -196,18 +185,7 @@ const Checkout = () => {
       };
 
       localStorage.setItem("user", JSON.stringify(newUser));
-
       window.dispatchEvent(new Event("authChanged"));
-      const guestCart = JSON.parse(localStorage.getItem("cart_guest") || "[]");
-      if (guestCart.length) {
-        await fetch(`/api/users/${newUser.id}/cart/merge`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: guestCart }),
-        });
-        localStorage.removeItem("cart_guest");
-      }
-      
       setAuthUser(newUser);
       toast.success("Account created. You're checked in.");
     } catch (err) {
