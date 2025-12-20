@@ -5,6 +5,7 @@ import { emptyCart } from "../redux/action";
 
 const Navbar = () => {
   const state = useSelector((state) => state.handleCart);
+  const cartCount = state.reduce((sum, item) => sum + (Number(item.qty) || 0), 0);
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -116,7 +117,7 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink to="/cart" className="btn btn-outline-dark m-2">
-              <i className="fa fa-shopping-cart me-1"></i> Cart ({state.length})
+              <i className="fa fa-shopping-cart me-1"></i> Cart ({cartCount})
             </NavLink>
           </div>
         </div>

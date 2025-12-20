@@ -149,16 +149,10 @@ const Product = () => {
                     <li className="list-group-item lead">${product.price}</li>
                   </ul> */}
                   <div className="card-body">
-                    <Link
-                      to={"/product/" + item.id}
-                      className="btn btn-dark m-1"
-                    >
-                      Buy Now
+                    <Link to={"/product/" + item.id} className="btn btn-dark m-1">
+                      View Details
                     </Link>
-                    <button
-                      className="btn btn-dark m-1"
-                      onClick={() => addProduct(item)}
-                    >
+                    <button className="btn btn-dark m-1" onClick={() => addProduct(item)}>
                       Add to Cart
                     </button>
                   </div>

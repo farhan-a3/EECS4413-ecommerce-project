@@ -41,3 +41,10 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## 4. Docker instructions:
+``` bash
+Run Docker
+Open Docker Desktop Wait until it says “Docker is running”
+
+docker compose up --build```
