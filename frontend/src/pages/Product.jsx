@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
+import toast from "react-hot-toast";
 
 import { Footer, Navbar } from "../components";
 
@@ -15,9 +16,18 @@ const Product = () => {
   const [loading2, setLoading2] = useState(false);
 
   const dispatch = useDispatch();
+  const LOW_STOCK_THRESHOLD = 5;
 
   const addProduct = (product) => {
+    const stock = Number(product?.stock ?? 0);
+
+    if (stock <= 0) {
+      toast.error("Out of stock");
+      return;
+    }
+
     dispatch(addCart(product));
+    toast.success("Added to cart");
   };
 
   useEffect(() => {
@@ -83,11 +93,23 @@ const Product = () => {
               </p>
               <h3 className="display-6  my-4">${product.price}</h3>
               <p className="lead mb-2">
-                <strong>Quantity remaining:</strong> {product?.stock ?? 0}
+                {(() => {
+                  const stock = Number(product?.stock ?? 0);
+                  const isOut = stock <= 0;
+                  const isLow = stock > 0 && stock <= LOW_STOCK_THRESHOLD;
+                  return (
+                    <>
+                      <strong>Quantity remaining:</strong> {stock}
+                      {isLow && (<span className="badge bg-warning text-dark ms-2">Almost gone...</span>)}
+                      {isOut && (<span className="badge bg-danger ms-2">Out of stock</span>)}
+                    </>
+                  );
+                })()}
               </p>
               <p className="lead">{product.description}</p>
               <button
                 className="btn btn-outline-dark"
+                disabled={Number(product?.stock ?? 0) <= 0}
                 onClick={() => addProduct(product)}
               >
                 Add to Cart
@@ -144,6 +166,19 @@ const Product = () => {
                     <h5 className="card-title">
                       {item.title.substring(0, 15)}...
                     </h5>
+
+                    {(() => {
+                      const stock = Number(item?.stock ?? 0);
+                      const isOut = stock <= 0;
+                      const isLow = stock > 0 && stock <= LOW_STOCK_THRESHOLD;
+                      return (
+                        <div className="text-muted" style={{ fontSize: 13 }}>
+                          Stock: {stock}
+                          {isLow && <span className="badge bg-warning text-dark ms-2">Almost gone...</span>}
+                          {isOut && <span className="badge bg-danger ms-2">Out of stock</span>}
+                        </div>
+                      );
+                    })()}
                   </div>
                   {/* <ul className="list-group list-group-flush">
                     <li className="list-group-item lead">${product.price}</li>
@@ -152,7 +187,11 @@ const Product = () => {
                     <Link to={"/product/" + item.id} className="btn btn-dark m-1">
                       View Details
                     </Link>
-                    <button className="btn btn-dark m-1" onClick={() => addProduct(item)}>
+                    <button
+                      className="btn btn-dark m-1"
+                      disabled={Number(item?.stock ?? 0) <= 0}
+                      onClick={() => addProduct(item)}
+                    >
                       Add to Cart
                     </button>
                   </div>

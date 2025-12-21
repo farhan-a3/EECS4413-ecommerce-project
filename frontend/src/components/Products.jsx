@@ -16,8 +16,15 @@ const Products = ({ showSearch = true }) => {
   const [sortBy, setSortBy] = useState("default");
 
   const dispatch = useDispatch();
+  const LOW_STOCK_THRESHOLD = 5;
 
   const addProduct = (product) => {
+    const stock = Number(product?.stock ?? 0);
+    if (stock <= 0) {
+      toast.error("Out of stock");
+      return;
+    }
+
     dispatch(addCart(product));
   };
 
@@ -194,7 +201,18 @@ const Products = ({ showSearch = true }) => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item lead">$ {product.price}</li>
                     <li className="list-group-item">
-                      Quantity remaining: {product?.stock ?? 0}
+                      {(() => {
+                        const stock = Number(product?.stock ?? 0);
+                        const isOut = stock <= 0;
+                        const isLow = stock > 0 && stock <= LOW_STOCK_THRESHOLD;
+                        return (
+                          <>
+                            Quantity remaining: {stock}
+                            {isLow && (<span className="badge bg-warning text-dark ms-2">Almost gone...</span>)}
+                            {isOut && (<span className="badge bg-danger ms-2">Out of stock</span>)}
+                          </>
+                        );
+                      })()}
                     </li>
                   </ul>
                   <div className="card-body">
@@ -203,9 +221,10 @@ const Products = ({ showSearch = true }) => {
                     </Link>
                     <button
                       className="btn btn-dark m-1"
+                      disabled={Number(product?.stock ?? 0) <= 0}
                       onClick={() => {
-                        toast.success("Added to cart");
                         addProduct(product);
+                        if (Number(product?.stock ?? 0) > 0) toast.success("Added to cart");
                       }}
                     >
                       Add to Cart
