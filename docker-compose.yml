@@ -6,23 +6,20 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "8080:8080"
+      - "5000:5000"
     environment:
-      - PORT=8080
-      - DATABASE_URL=file:/data/dev.db
+      - PORT=5000
+      # - DATABASE_URL=file:/data/dev.db
     volumes:
-      - ./backend/prisma/dev.db:/data/dev.db
+      - ./backend/prisma/dev.db:/app/backend/prisma/dev.db
 
   frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
     ports:
-      - "3001:5173"
+      - "3000:3000"
     environment:
-      - VITE_API_URL=http://localhost:8080
+      - VITE_PROXY_TARGET=http://backend:5000
     depends_on:
       - backend
-
-volumes:
-  backend_data:

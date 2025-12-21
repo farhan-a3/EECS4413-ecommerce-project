@@ -11,7 +11,7 @@ RUN cd frontend && npm ci
 # Copy frontend source
 COPY frontend ./frontend
 
-EXPOSE 5173
+EXPOSE 3000
 
 # Run Vite dev server and expose it
-CMD ["sh", "-c", "cd frontend && npm run dev -- --host 0.0.0.0 --port 5173"]
+CMD ["sh", "-c", "cd frontend && npm run dev -- --host 0.0.0.0 --port 3000"]

@@ -18,7 +18,7 @@ RUN cd backend && npx prisma generate
 RUN mkdir -p /data
 
 ENV PORT=8080
-EXPOSE 8080
+EXPOSE 5000
 
 # IMPORTANT: listen on 0.0.0.0 inside container
-CMD ["sh", "-c", "cd backend && npm run dev -- --host 0.0.0.0 --port 8080"]
+CMD ["sh", "-c", "cd backend && npm start"]
