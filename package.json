@@ -1,8 +1,0 @@
-{
-  "name": "eecs4413-ecommerce-project",
-  "private": true,
-  "workspaces": ["backend", "frontend"],
-  "scripts": {
-    "build": "npm --workspace backend run vercel-build && npm --workspace frontend run build"
-  }
-}
