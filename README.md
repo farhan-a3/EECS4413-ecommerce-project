@@ -43,8 +43,10 @@ npm run dev
 ```
 
 ## 4. Docker instructions:
-``` bash
-Run Docker
-Open Docker Desktop Wait until it says “Docker is running”
 
-docker compose up --build```
+1) Run Docker
+2) Open Docker Desktop and wait until it says "Docker is running"
+3) Then from the project root, run:
+``` bash
+docker compose up --build
+```

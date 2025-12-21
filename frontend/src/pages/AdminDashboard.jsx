@@ -11,9 +11,14 @@ const AdminDashboard = () => {
   const [tab, setTab] = useState("sales");
 
   useEffect(() => {
-    const ok = sessionStorage.getItem("isAdminAuthenticated");
-    if (!ok) navigate("/admin-login");
+    const ok = sessionStorage.getItem("isAdminAuthenticated") === "true";
+    if (!ok) navigate("/admin-login", { replace: true });
   }, [navigate]);
+
+  const handleAdminLogout = () => {
+    sessionStorage.removeItem("isAdminAuthenticated");
+    navigate("/admin-login", { replace: true });
+  };
 
   return (
     <>
@@ -21,6 +26,12 @@ const AdminDashboard = () => {
       <div className="container my-3 py-3">
         <h1 className="text-center">Admin Control Panel</h1>
         <hr />
+
+        <div className="d-flex justify-content-end mb-3">
+          <button className="btn btn-outline-dark" type="button" onClick={handleAdminLogout}>
+            Logout Admin
+          </button>
+        </div>
 
         <div className="d-flex justify-content-center gap-2 flex-wrap mb-4">
           <button
