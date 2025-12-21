@@ -7,6 +7,9 @@ The codebase has two main parts:
 - `backend/` – Node.js + Express API using **Prisma** and a database  
 - `frontend/` – React (Vite) single-page app that talks to the backend  
 
+## Requirements
+- Node.js 22.x (uses npm lockfileVersion: 3, so use a recent npm)
+
 ---
 
 ## 1. Clone the repository
@@ -18,7 +21,7 @@ cd EECS4413-ecommerce-project
 
 ## 2. Set up and run the backend
 
-From the project root:
+From the project root run:
 ```bash
 cd backend
 npm install
@@ -35,7 +38,7 @@ npm run dev   # keep this running
 
 ## 3. Set up and run the frontend
 
-Open a new terminal, then from the project root:
+Open a new terminal, then from the project root run:
 ```bash
 cd frontend
 npm install
@@ -51,9 +54,7 @@ npm run dev
 
 ## 4. Docker instructions
 
-1) Run Docker
-2) Open Docker Desktop and wait until it says "Docker is running"
-3) Then from the project root, run:
+Start Docker Desktop and wait until it says "Docker is running", then from the project root run:
 ``` bash
 docker compose up --build
 ```
