@@ -671,9 +671,40 @@ app.get('/api/health', (req, res) => {
 
 // start server
 app.listen(PORT, () => {
-  console.log(`✅ Backend server running on http://localhost:${PORT}`);
+  const base = `http://localhost:${PORT}`;
+  console.log(`✅ Backend server running on ${base}`);
   console.log(`📦 API Endpoints:`);
-  console.log(`   GET http://localhost:${PORT}/api/products`);
-  console.log(`   GET http://localhost:${PORT}/api/products/:id`);
-  console.log(`   GET http://localhost:${PORT}/api/products/category/:category`);
+
+  // Health
+  console.log(`   GET    ${base}/api/health`);
+
+  // Products
+  console.log(`   GET    ${base}/api/products`);
+  console.log(`   GET    ${base}/api/products/:id`);
+  console.log(`   GET    ${base}/api/products/category/:category`);
+
+  // Auth
+  console.log(`   POST   ${base}/api/auth/register`);
+  console.log(`   POST   ${base}/api/auth/login`);
+
+  // Checkout
+  console.log(`   POST   ${base}/api/checkout`);
+
+  // User Profile + History
+  console.log(`   GET    ${base}/api/users/:id`);
+  console.log(`   PUT    ${base}/api/users/:id`);
+  console.log(`   GET    ${base}/api/users/:id/orders`);
+
+  // Cart (DB CartItem table)
+  console.log(`   GET    ${base}/api/users/:id/cart`);
+  console.log(`   PUT    ${base}/api/users/:id/cart`);
+  console.log(`   POST   ${base}/api/users/:id/cart/merge`);
+  console.log(`   DELETE ${base}/api/users/:id/cart`);
+
+  // Admin
+  console.log(`   GET    ${base}/api/admin/orders`);
+  console.log(`   GET    ${base}/api/admin/stats`);
+  console.log(`   PATCH  ${base}/api/admin/products/:id`);
+  console.log(`   PATCH  ${base}/api/admin/users/:id`);
+  console.log(`   GET    ${base}/api/admin/users`);
 });
