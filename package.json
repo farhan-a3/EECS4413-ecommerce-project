@@ -1,8 +1,31 @@
 {
   "name": "eecs4413-ecommerce-project",
-  "private": true,
-  "workspaces": ["backend", "frontend"],
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce site for EECS4413 (Building E-commerce Systems)",
   "scripts": {
-    "build": "npm --workspace backend run vercel-build && npm --workspace frontend run build"
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:up:build": "docker-compose up --build",
+    "docker:down": "docker-compose down",
+    "docker:down:clean": "docker-compose down -v",
+    "docker:logs": "docker-compose logs -f",
+    "docker:logs:backend": "docker-compose logs -f backend",
+    "docker:logs:frontend": "docker-compose logs -f frontend",
+    "docker:restart": "docker-compose restart",
+    "test:docker": "bash test-docker.sh"
+  },
+  "keywords": [
+    "ecommerce",
+    "react",
+    "nodejs",
+    "express",
+    "prisma",
+    "docker"
+  ],
+  "author": "Team: Farhan Ahmed, Abel Payyanickal, et al.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/farhan-a3/EECS4413-ecommerce-project.git"
   }
 }

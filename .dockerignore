@@ -1,0 +1,52 @@
+# .dockerignore - Place in project root
+# Prevents unnecessary files from being copied to Docker images
+
+# Node modules
+**/node_modules
+**/npm-debug.log
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+**/dist
+**/build
+**/.next
+
+# Environment files (keep .env.example if you have one)
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# Logs
+**/logs
+**/*.log
+
+# Testing
+**/coverage
+**/.nyc_output
+
+# Misc
+**/.cache
+**/tmp
+**/temp

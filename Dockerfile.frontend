@@ -1,17 +1,19 @@
-FROM node:20-slim
+# Frontend Dockerfile
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy frontend package files
-COPY frontend/package*.json ./frontend/
+# Copy package files
+COPY frontend/package*.json ./
 
-# Install frontend dependencies
-RUN cd frontend && npm ci
+# Install dependencies
+RUN npm install
 
-# Copy frontend source
-COPY frontend ./frontend
+# Copy frontend source code
+COPY frontend/ ./
 
+# Expose frontend port
 EXPOSE 5173
 
-# Run Vite dev server and expose it
-CMD ["sh", "-c", "cd frontend && npm run dev -- --host 0.0.0.0 --port 5173"]
+# Start the frontend dev server with host flag so it's accessible outside container
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
