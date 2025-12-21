@@ -28,7 +28,7 @@ Create a `.env` file inside the `backend` folder with the following content:
 DATABASE_URL="file:./dev.db"
 ```
 Then generate the Prisma client and start the backend server:
-```
+```bash
 npx prisma generate
 npm run dev   # keep this running
 ```
@@ -42,7 +42,14 @@ npm install
 npm run dev
 ```
 
-## 4. Docker instructions:
+## Local URLs
+
+- Frontend: http://localhost:3000  
+- Backend API: http://localhost:5000  
+- Health check: http://localhost:5000/api/health  
+- Admin panel: http://localhost:3000/admin  
+
+## 4. Docker instructions
 
 1) Run Docker
 2) Open Docker Desktop and wait until it says "Docker is running"
@@ -50,6 +57,7 @@ npm run dev
 ``` bash
 docker compose up --build
 ```
+After containers are running, use the same URLs listed in the **Local URLs** section above.
 
 ## Admin credentials
 
