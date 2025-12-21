@@ -57,6 +57,10 @@ npm run dev
 ``` bash
 docker compose up --build
 ```
+If this doesn't work, create a `.env` file inside the `backend` folder with the following content (same as in step 2) and try again:
+```env
+DATABASE_URL="file:./dev.db"
+```
 After containers are running, use the same URLs listed in the **Local URLs** section above.
 
 ## Admin credentials

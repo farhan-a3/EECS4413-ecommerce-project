@@ -12,7 +12,7 @@ RUN cd backend && npm ci
 COPY backend ./backend
 
 # Generate Prisma client
-RUN cd backend && npx prisma generate
+RUN cd backend && DATABASE_URL="file:/data/dev.db" npx prisma generate
 
 # Create folder for SQLite persistence
 RUN mkdir -p /data
