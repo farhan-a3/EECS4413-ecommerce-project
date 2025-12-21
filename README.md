@@ -50,3 +50,9 @@ npm run dev
 ``` bash
 docker compose up --build
 ```
+
+## Admin credentials
+
+Use the following credentials to log into the admin control panel:
+- Email: admin@shop.com
+- Password: password123
