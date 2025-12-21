@@ -54,7 +54,7 @@ npm run dev
 
 ## 4. Docker instructions
 
-Start Docker Desktop and wait until it says "Docker is running", then from the project root run:
+Make sure Docker is installed and running on your machine, then from the project root run:
 ``` bash
 docker compose up --build
 ```
