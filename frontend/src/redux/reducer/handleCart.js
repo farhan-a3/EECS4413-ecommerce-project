@@ -33,8 +33,8 @@ const handleCart = (state = initialState, action) => {
       return [];
     }
 
-    // This replaces the entire cart from DB (or merged result)
-    // payload must be an array shaped like: [{ ...productFields, qty }, ...]
+    // replaces the entire cart from DB (or merged result)
+    // payload must be an array shaped like [{ ...productFields, qty }, ...]
     case "SET_CART": {
       const items = Array.isArray(action.payload) ? action.payload : [];
       return items;

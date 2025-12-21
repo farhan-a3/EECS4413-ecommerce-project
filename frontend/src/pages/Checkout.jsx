@@ -70,7 +70,7 @@ const Checkout = () => {
     }
   }, []);
 
-  // Load saved profile for logged-in users
+  // Load saved profile for logged in users
   useEffect(() => {
     if (!authUser?.id) return;
 
@@ -104,7 +104,7 @@ const Checkout = () => {
     loadProfile();
   }, [authUser]);
 
-  // When user switches back to "Use saved", re-apply saved values and lock fields
+  // When user switches back to "Use saved", reapply saved values and lock fields
   useEffect(() => {
     if (!useSavedInfo || !savedProfile) return;
 

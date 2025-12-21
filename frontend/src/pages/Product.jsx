@@ -180,9 +180,6 @@ const Product = () => {
                       );
                     })()}
                   </div>
-                  {/* <ul className="list-group list-group-flush">
-                    <li className="list-group-item lead">${product.price}</li>
-                  </ul> */}
                   <div className="card-body">
                     <Link to={"/product/" + item.id} className="btn btn-dark m-1">
                       View Details

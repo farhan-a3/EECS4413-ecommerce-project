@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar, Footer } from "../components";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -10,13 +11,14 @@ const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     
-    // In a real app, you'd call your backend /api/login
-    // For now, we check against your seeded admin credentials
+    // in real app, should call backend /api/login
+    // for now just check against seeded admin credentials
     if (email === "admin@shop.com" && password === "password123") {
       sessionStorage.setItem("isAdminAuthenticated", "true");
+      toast.success("Admin logged in successfully");
       navigate("/admin");
     } else {
-      alert("Invalid Admin Credentials");
+      toast.error("Invalid Admin Credentials");
     }
   };
 

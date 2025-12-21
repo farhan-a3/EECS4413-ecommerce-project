@@ -262,7 +262,7 @@ app.patch('/api/admin/products/:id', async (req, res) => {
   }
 });
 
-// Admin: Update customer info (name/email + shipping + billing)
+// Admin: update customer info (name/email + shipping + billing)
 app.patch('/api/admin/users/:id', async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid user id" });
@@ -355,7 +355,7 @@ app.post('/api/checkout', async (req, res) => {
       const user = await tx.user.findUnique({ where: { id: uid } });
       if (!user) throw new Error("User not found. Please login again.");
 
-      // (optional) save profile defaults if selected
+      // save profile defaults if selected
       if (saveToProfile) {
         await tx.user.update({
           where: { id: uid },
@@ -427,7 +427,7 @@ app.post('/api/checkout', async (req, res) => {
   }
 });
 
-// Get a user's profile (excluding password)
+// get a user's profile (excluding password)
 app.get("/api/users/:id", async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid user id" });
@@ -457,7 +457,7 @@ app.get("/api/users/:id", async (req, res) => {
   res.json(user);
 });
 
-// Update a user's profile (excluding password)
+// update a user's profile (excluding password)
 app.put("/api/users/:id", async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid user id" });
@@ -514,7 +514,7 @@ app.put("/api/users/:id", async (req, res) => {
   }
 });
 
-// Purchase history
+// purchase history
 app.get("/api/users/:id/orders", async (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: "Invalid user id" });
@@ -557,8 +557,7 @@ const normalizeCartItems = (raw) => {
 };
 
 const cartItemsToFrontend = (cartItems) => {
-  // return objects shaped like frontend cart items:
-  // { ...productFields, qty: quantity }
+  // return objects shaped like frontend cart items: { ...productFields, qty: quantity }
   return cartItems.map((ci) => ({
     ...ci.product,
     qty: ci.quantity,

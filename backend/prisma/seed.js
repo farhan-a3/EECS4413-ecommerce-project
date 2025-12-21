@@ -142,27 +142,27 @@ const products = [
 async function main() {
   console.log('Starting seed process...');
 
-  // 1. Clean out the database in the CORRECT order
-  // Delete "Child" tables first
+  // 1. clean out the database in the CORRECT order
+  // delete "Child" tables first
   await prisma.orderItem.deleteMany();
-  await prisma.cartItem.deleteMany(); // <--- CRITICAL: Add this
+  await prisma.cartItem.deleteMany();
   
-  // Now delete "Parent" tables
+  // now delete "Parent" tables
   await prisma.order.deleteMany();
   await prisma.product.deleteMany();
   await prisma.user.deleteMany();
 
   console.log('Database cleaned.');
 
-  // 2. Create an Admin and a Customer
-  // Note: Using createMany is efficient!
+  // 2. create an Admin and a Customer
+  // note using createMany is efficient!
   await prisma.user.createMany({
     data: [
       {
         email: 'admin@shop.com',
         name: 'Admin User',
         password: 'password123', 
-        role: 'ADMIN', // You can use the string 'ADMIN' or UserRole.ADMIN
+        role: 'ADMIN', // can use 'ADMIN' or UserRole.ADMIN
       },
       {
         email: 'customer@test.com',
@@ -194,10 +194,7 @@ async function main() {
   });
   console.log('Users (Admin & Customer) created.');
 
-  // 3. Create Products
-  // Since your products array has 'rating' as a JSON object, 
-  // ensure your "products" variable matches the structure 
-  // we discussed earlier.
+  // 3. create products
   for (const product of products) {
     await prisma.product.create({
       data: product,
@@ -208,11 +205,9 @@ async function main() {
   console.log('Seeding finished successfully.');
 }
 
-main()
-  .catch((e) => {
-    console.error('Seeding error:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+main().catch((e) => {
+  console.error('Seeding error:', e);
+  process.exit(1);
+}).finally(async () => {
+  await prisma.$disconnect();
+});

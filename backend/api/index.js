@@ -1,2 +1,2 @@
-const app = require("../app"); // or "../index" depending on your file name
+const app = require("../app"); // or "../index" depending on file name
 module.exports = app;

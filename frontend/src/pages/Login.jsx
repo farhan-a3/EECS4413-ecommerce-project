@@ -25,7 +25,7 @@ const Login = () => {
         throw new Error(data.error || "Login failed");
       }
 
-      // Save user in localStorage for now (plain text passwords stay in DB only)
+      // save user in localStorage for now (plain text passwords stay in DB only)
       localStorage.setItem("user", JSON.stringify(data.user));
 
       // tell Navbar/others user changed
