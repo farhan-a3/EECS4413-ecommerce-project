@@ -4,8 +4,8 @@ Full-stack e-commerce site for **EECS 4413 – Building E-Commerce Systems**.
 
 ## Project structure
 
-- `backend/` – Node.js + Express REST API using **Prisma** (SQLite via `dev.db`)
-- `frontend/` – React (Vite) single-page app that communicates with the backend API
+- `backend/` – Node.js + Express **(JavaScript)** REST API using **Prisma** (SQLite via `dev.db`)
+- `frontend/` – React (Vite) **(JavaScript)** single-page app that communicates with the backend API
 
 ## Requirements
 - Node.js 22.x (uses npm lockfileVersion: 3, so use a recent npm)
